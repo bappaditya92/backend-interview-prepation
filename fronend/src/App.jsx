@@ -11,8 +11,7 @@ function App() {
     }
   )
   .catch((error)=>{
-    console.log(error);
-    
+    console.log(error); 
   })
 
   })
@@ -22,12 +21,14 @@ function App() {
       <h1>UI is Running...</h1>
       <p>BOOKS: {books.length}</p>
 
-      {books.map((book, index) => {
+      {books.map((book, index) => (
         <div key={book.id}>
           <h3>{book.name}</h3>
           <h3>{book.author}</h3>
-        </div>;
-      })}
+        </div>
+
+      ))
+    }
     </>
   );
 }
