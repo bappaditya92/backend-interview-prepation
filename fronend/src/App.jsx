@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <h1>Book List</h1>
+      <h1>Fictions List</h1>
       <p>BOOKS: {books.length}</p>
       
       {books.map((book, index) => (
