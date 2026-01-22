@@ -1,6 +1,5 @@
 
 const EventEmitter = require("events");
-//const { EventEmitter } = require("stream");
 
 const eventEmitter = new EventEmitter();
 
