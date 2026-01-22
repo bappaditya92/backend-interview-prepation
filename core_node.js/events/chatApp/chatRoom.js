@@ -12,7 +12,7 @@ class Chatroom extends EventEmitter {
   }
   sendMessage(user, message) {
     if (this.users.has(user)) {
-      this.emit("message".user.message);
+      this.emit("message",user,message);
     } else {
       console.log(`${user} is not in chat`);
     }
