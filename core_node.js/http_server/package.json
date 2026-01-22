@@ -1,0 +1,15 @@
+{
+  "name": "http_server",
+  "version": "1.0.0",
+  "main": "httpServer.js",
+  "scripts": {
+    "start": "index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^25.0.10"
+  }
+}
