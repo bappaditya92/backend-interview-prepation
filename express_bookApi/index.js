@@ -29,9 +29,13 @@ const books = [
 ];
 
 //Route
-app.get("/books", (req, res) => {
+app.get('/books', (req, res) => {
   res.json(books)
 });
+
+app.get("/books/:id", (req,res)=>{
+    res.json(books)
+})
 
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
