@@ -3,7 +3,6 @@
 This repository demonstrates my hands-on experience in building **scalable, secure, and production-ready backend applications** using **Node.js** and modern backend tools. It covers backend fundamentals, database design, authentication, system design concepts, and containerized deployments.
 
 ---
-
 ## 📌 Overview
 
 The goal of this repository is to strengthen core backend engineering skills while following **real-world architecture patterns** and **industry best practices**.
