@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req,res)=>{
-    res.send('app is running')
+    res.end('app is running')
 })
 
 app.listen(3000, ()=>{
