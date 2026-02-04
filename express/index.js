@@ -1,5 +1,4 @@
 const express = require('express');
-
 const app = express();
 
 app.get('/', (req,res)=>{
@@ -17,6 +16,7 @@ app.post('/tweets', (req,res)=>{
 app.get('/tweets',(req,res)=>{
     res.end('your tweet is here');
 });
+
 app.listen(8000, ()=>{
     console.log(`app is running on 3000`);
 });
