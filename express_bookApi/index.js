@@ -38,7 +38,7 @@ app.get("/books/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const book = books.find((e) => e.id === id);
   if(isNaN(id)){
-    return res.status(400).json({error: `Id must be of type number`})
+    return res.status(400).json({error: `id must be of type number`})
   }
   if (!book) {
     return res.status(404).json({
