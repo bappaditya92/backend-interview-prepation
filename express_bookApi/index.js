@@ -1,3 +1,4 @@
+const { error } = require("console");
 const express = require("express");
 const app = express();
 const PORT = 8000;
@@ -29,13 +30,21 @@ const books = [
 ];
 
 //Route
-app.get('/books', (req, res) => {
-  res.json(books)
+app.get("/books", (req, res) => {
+  res.json(books);
 });
 
-app.get("/books/:id", (req,res)=>{
-    res.json(books)
-})
+app.get("/books/:id", (req, res) => {
+  const id = req.params.id;
+  const book = books.find((e) => e.id == id);
+
+  if (!book) {
+    return res.status(404).json({
+      error: `Book with id ${id} is not found`
+    });
+  }
+  return res.status(200).json(book)
+});
 
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
