@@ -48,6 +48,12 @@ app.get("/books/:id", (req, res) => {
   return res.status(200).json(book)
 });
 
+app.post('/books', (req,res)=>{
+  console.log(req.headers);
+  
+  console.log(req.body);
+  return res.json({message: `This route is under dev`})
+})
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
 });
