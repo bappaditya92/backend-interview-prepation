@@ -35,8 +35,8 @@ app.get("/books", (req, res) => {
 });
 
 app.get("/books/:id", (req, res) => {
-  const id = req.params.id;
-  const book = books.find((e) => e.id == id);
+  const id = parseInt(req.params.id);
+  const book = books.find((e) => e.id === id);
 
   if (!book) {
     return res.status(404).json({
