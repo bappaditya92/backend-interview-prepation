@@ -31,11 +31,12 @@ const books = [
 //middleware(plugins)
 app.use(express.json());
 
-//Route
+//get all books
 app.get("/books", (req, res) => {
   res.json(books);
 });
 
+//get book by id
 app.get("/books/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const book = books.find((e) => e.id === id);
@@ -50,7 +51,7 @@ app.get("/books/:id", (req, res) => {
   return res.status(200).json(book);
 });
 
-
+//create book
 app.post("/books", (req, res) => {
   const { title, author,price,available } = req.body;
   if(!title || title === ''){
@@ -65,13 +66,14 @@ app.post("/books", (req, res) => {
   if(!available || available===''){
     return res.status(400).json({error:`available is required`})
   }
-
   const id = books.length + 1;
   const book = {id, title, author,price, available}
   books.push(book);
-
   return res.status(201).json({ message: `Book created succesfully` });
 });
+
+
+//Delete book by id
 
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`);
