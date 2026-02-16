@@ -2,7 +2,7 @@ const { error } = require("console");
 const express = require("express");
 const app = express();
 const PORT = 8000;
-
+const fs = require("fs");
 //In memory database
 
 const books = [
@@ -30,9 +30,22 @@ const books = [
 ];
 //middleware(plugins)
 app.use(express.json());
+// app.use(function (req, res, next) {
+//   console.log("I am Middleware A");
+//   return res.json({ message: "I am a middleware A" });
+//   next();
+// });
+
+// app.use(function(req,res,next){
+//   console.log('i am from middleware B')
+//   res.json({message: 'I am from middleare B'});
+//   next();
+// })
+
 app.use(function (req, res, next) {
-  console.log("I am Middleware A");
-  return res.json({ message: "I am a middleware" });
+  const log = `\n[${Date.now()}] ${req.method} ${req.path}`;
+  fs.appendFileSync("logs.txt", log, "utf-8");
+  next();
 });
 
 //get all books
