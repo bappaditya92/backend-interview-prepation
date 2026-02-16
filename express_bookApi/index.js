@@ -30,8 +30,9 @@ const books = [
 ];
 //middleware(plugins)
 app.use(express.json());
-app.use(function(req,res,next){
-  console.log('I am Middleware A');
+app.use(function (req, res, next) {
+  console.log("I am Middleware A");
+  return res.json({ message: "I am a middleware" });
 });
 
 //get all books
@@ -86,8 +87,7 @@ app.delete("/books/:id", (req, res) => {
     return res.status(404).json({ error: `Book with ${id} is not exist` });
   }
   books.splice(indexToDelete, 1);
-  return res.status(200).json({message: `Book deleted with the id ${id}`});
-
+  return res.status(200).json({ message: `Book deleted with the id ${id}` });
 });
 
 app.listen(PORT, () => {
