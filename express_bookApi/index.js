@@ -29,7 +29,7 @@ const books = [
   },
 ];
 //middleware(plugins)
-app.use(express.json());
+
 // app.use(function (req, res, next) {
 //   console.log("I am Middleware A");
 //   return res.json({ message: "I am a middleware A" });
@@ -42,19 +42,27 @@ app.use(express.json());
 //   next();
 // })
 
-app.use(function (req, res, next) {
+function loggerMiddleware(req, res, next) {
   const log = `\n[${Date.now()}] ${req.method} ${req.path}`;
   fs.appendFileSync("logs.txt", log, "utf-8");
   next();
-});
+}
 
+function customMiddleware(req, res, next) {
+  console.log('I am a custom middleware')
+  next();
+}
+
+app.use(express.json());
+app.use(loggerMiddleware);
+app.use(customMiddleware);
 //get all books
 app.get("/books", (req, res) => {
   res.json(books);
 });
 
 //get book by id
-app.get("/books/:id", (req, res) => {
+app.get("/books/:id", customMiddleware,loggerMiddleware, (req, res) => {
   const id = parseInt(req.params.id);
   const book = books.find((e) => e.id === id);
   if (isNaN(id)) {
