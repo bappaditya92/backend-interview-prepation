@@ -1,0 +1,58 @@
+const express = require("express");
+
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.json(books);
+});
+
+router.get("/:id", customMiddleware,loggerMiddleware, (req, res) => {
+  const id = parseInt(req.params.id);
+  const book = books.find((e) => e.id === id);
+  if (isNaN(id)) {
+    return res.status(400).json({ error: `id must be of type number` });
+  }
+  if (!book) {
+    return res.status(404).json({
+      error: `Book with id ${id} is not found`,
+    });
+  }
+  return res.status(200).json(book);
+});
+
+//create book
+router.post("/", (req, res) => {
+  const { title, author, price, available } = req.body;
+  if (!title || title === "") {
+    return res.status(400).json({ error: `title is required` });
+  }
+  if (!author || author === "") {
+    return res.status(400).json({ error: `author is required` });
+  }
+  if (!price || price === "") {
+    return res.status(400).json({ error: `price is required` });
+  }
+  if (!available || available === "") {
+    return res.status(400).json({ error: `available is required` });
+  }
+  const id = books.length + 1;
+  const book = { id, title, author, price, available };
+  books.push(book);
+  return res.status(201).json({ message: `Book created succesfully` });
+});
+
+//Delete book by id
+router.delete("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ error: `id must be a number` });
+  }
+  const indexToDelete = books.findIndex((e) => e.id === id);
+  if (indexToDelete < 0) {
+    return res.status(404).json({ error: `Book with ${id} is not exist` });
+  }
+  books.splice(indexToDelete, 1);
+  return res.status(200).json({ message: `Book deleted with the id ${id}` });
+});
+
+module.exports = router;
