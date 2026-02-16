@@ -30,6 +30,9 @@ const books = [
 ];
 //middleware(plugins)
 app.use(express.json());
+app.use(function(req,res,next){
+  console.log('I am Middleware A');
+});
 
 //get all books
 app.get("/books", (req, res) => {
