@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   res.json(BOOKS);
 });
 
-router.get("/:id", customMiddleware, loggerMiddleware, (req, res) => {
+router.get("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const book = BOOKS.find((e) => e.id === id);
   if (isNaN(id)) {
