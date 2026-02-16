@@ -42,7 +42,7 @@ exports.deleteBookById = function(req,res){
   if (isNaN(id)) {
     return res.status(400).json({ error: `id must be a number` });
   }
-  const indexToDelete = books.findIndex((e) => e.id === id);
+  const indexToDelete = BOOKS.findIndex((e) => e.id === id);
   if (indexToDelete < 0) {
     return res.status(404).json({ error: `Book with ${id} is not exist` });
   }
