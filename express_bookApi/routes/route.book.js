@@ -1,14 +1,15 @@
 const express = require("express");
 
 const router = express.Router();
+const { BOOKS } = require("../db/book");
 
 router.get("/", (req, res) => {
-  res.json(books);
+  res.json(BOOKS);
 });
 
-router.get("/:id", customMiddleware,loggerMiddleware, (req, res) => {
+router.get("/:id", customMiddleware, loggerMiddleware, (req, res) => {
   const id = parseInt(req.params.id);
-  const book = books.find((e) => e.id === id);
+  const book = BOOKS.find((e) => e.id === id);
   if (isNaN(id)) {
     return res.status(400).json({ error: `id must be of type number` });
   }
@@ -35,9 +36,9 @@ router.post("/", (req, res) => {
   if (!available || available === "") {
     return res.status(400).json({ error: `available is required` });
   }
-  const id = books.length + 1;
+  const id = BOOKS.length + 1;
   const book = { id, title, author, price, available };
-  books.push(book);
+  BOOKS.push(book);
   return res.status(201).json({ message: `Book created succesfully` });
 });
 
@@ -51,7 +52,7 @@ router.delete("/:id", (req, res) => {
   if (indexToDelete < 0) {
     return res.status(404).json({ error: `Book with ${id} is not exist` });
   }
-  books.splice(indexToDelete, 1);
+  BOOKS.splice(indexToDelete, 1);
   return res.status(200).json({ message: `Book deleted with the id ${id}` });
 });
 
