@@ -1,9 +1,9 @@
-const { BOOKS } = require('../models/book');
-exports.getAllBooks = function(req,res){
-    res.json(BOOKS)
-}
+const { BOOKS } = require("../models/book");
+exports.getAllBooks = function (req, res) {
+  res.json(BOOKS);
+};
 
-exports.getAllBooksById = function(req,res){
+exports.getAllBooksById = function (req, res) {
   const id = parseInt(req.params.id);
   const book = BOOKS.find((e) => e.id === id);
   if (isNaN(id)) {
@@ -17,8 +17,8 @@ exports.getAllBooksById = function(req,res){
   return res.status(200).json(book);
 };
 
-exports.createBook = function(req, res){
-    const { title, author, price, available } = req.body;
+exports.createBook = function (req, res) {
+  const { title, author, price, available } = req.body;
   if (!title || title === "") {
     return res.status(400).json({ error: `title is required` });
   }
@@ -37,8 +37,8 @@ exports.createBook = function(req, res){
   return res.status(201).json({ message: `Book created succesfully` });
 };
 
-exports.deleteBookById = function(req,res){
-    const id = parseInt(req.params.id);
+exports.deleteBookById = function (req, res) {
+  const id = parseInt(req.params.id);
   if (isNaN(id)) {
     return res.status(400).json({ error: `id must be a number` });
   }
