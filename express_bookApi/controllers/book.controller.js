@@ -1,11 +1,14 @@
 const { BOOKS } = require("../models/book");
+
+//get all books
 exports.getAllBooks = function (req, res) {
   res.json(BOOKS);
 };
 
+//get books by id
 exports.getAllBooksById = function (req, res) {
   const id = parseInt(req.params.id);
-  const book = BOOKS.find((e) => e.id === id);
+  const   book = BOOKS.find((e) => e.id === id);
   if (isNaN(id)) {
     return res.status(400).json({ error: `id must be of type number` });
   }
@@ -17,6 +20,7 @@ exports.getAllBooksById = function (req, res) {
   return res.status(200).json(book);
 };
 
+//create new book 
 exports.createBook = function (req, res) {
   const { title, author, price, available } = req.body;
   if (!title || title === "") {
@@ -37,6 +41,7 @@ exports.createBook = function (req, res) {
   return res.status(201).json({ message: `Book created succesfully` });
 };
 
+//delete book by id
 exports.deleteBookById = function (req, res) {
   const id = parseInt(req.params.id);
   if (isNaN(id)) {
