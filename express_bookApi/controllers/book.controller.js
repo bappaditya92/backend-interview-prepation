@@ -8,7 +8,7 @@ exports.getAllBooks = function (req, res) {
 //get books by id
 exports.getAllBooksById = function (req, res) {
   const id = parseInt(req.params.id);
-  const   book = BOOKS.find((e) => e.id === id);
+  const book = BOOKS.find((e) => e.id === id);
   if (isNaN(id)) {
     return res.status(400).json({ error: `id must be of type number` });
   }
