@@ -14,7 +14,7 @@ exports.getAllBooksById = function (req, res) {
   }
   if (!book) {
     return res.status(404).json({
-      error: `Book with id ${id} is not found`,
+      error: `Book with id ${id} is not found`
     });
   }
   return res.status(200).json(book);
