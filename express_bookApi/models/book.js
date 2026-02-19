@@ -1,4 +1,4 @@
-exports.BOOKS =  [
+exports.BOOKS = [
   {
     id: 1,
     title: "Clean Code",
