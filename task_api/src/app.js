@@ -21,9 +21,18 @@ app.get("/notes", (req, res) => {
 });
 
 //update notes
+app.patch('/notes/:id',(req,res)=>{
+  const id = req.params.id
+  const description = req.body.description
+
+  notes[id].description = description;
+
+  res.status(200).json({
+    message:"notes updated succesfully"
+  })
+})
 
 //Delete notes by id
-
 app.delete("/notes/:id", (req, res) => {
   const id = req.params.id;
   delete notes[id];
